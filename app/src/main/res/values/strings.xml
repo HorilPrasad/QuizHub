@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Quiz Hub</string>
+
+    //Change this text according to your app
+    <string name="link">Install Quiz Hub for GK, English and current affairs Questions.</string>
+    <string name="playlink">\nhttps://play.google.com/store/apps/details?id=com.horil.quizhub</string>
+
+    //Change Ad Units here
+    <string name="admob_app_id">gyy</string>
+    <string name="banner_ad_unit">hjvj</string>
+    <string name="interstitial_ad_unit">hghj</string>
+
+
+    //Choose the category names here according to you
+    <string name="category_one">Category \nOne</string>
+    <string name="category_two">General Knowledge</string>
+    <string name="category_three">English</string>
+    <string name="sub_category_one">India</string>
+    <string name="sub_category_two">World</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="developerintro">Developed By: Aman Kumar</string>
+</resources>
