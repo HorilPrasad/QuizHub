@@ -13,10 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
 import com.horil.quizhub.ListViewHandlers.CategoryThreeQuiz;
 import com.horil.quizhub.ListViewHandlers.CategoryTwoQuiz;
@@ -28,19 +24,12 @@ import hotchemi.android.rate.AppRate;
 public class MainActivity extends AppCompatActivity
 implements NavigationView.OnNavigationItemSelectedListener {
 
-    AdView adView;
-    InterstitialAd interstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        adView = (AdView) findViewById(R.id.banner_ad);
-        MobileAds.initialize(this, "" + getResources().getString(R.string.admob_app_id));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -100,10 +89,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-       /* if (id == R.id.nav_about_us) {
-            startActivity(new Intent(this, AboutUs.class));
-
-        } else*/ if (id == R.id.nav_rate) {
+       if (id == R.id.nav_rate) {
 
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
 
@@ -119,19 +105,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
             share.putExtra(Intent.EXTRA_TEXT, ""+ getString(R.string.link) + "\n"+ Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName()));
             startActivity(Intent.createChooser(share, "Share app using"));
         }
-            /*else if (id == R.id.nav_bug) {
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto", "quizhubgk@gmail.com", null));
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Bug in Quiz Hub App");
-            startActivity(Intent.createChooser(emailIntent, null));
-
-        } else if (id == R.id.nav_feedback) {
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto", "quizhubgk@gmail.com", null));
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback regarding Quiz Hub App");
-            startActivity(Intent.createChooser(emailIntent, null));
-        }*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

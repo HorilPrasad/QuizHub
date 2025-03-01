@@ -12,11 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.horil.quizhub.DBHelpers.DBHelperForC_Three;
 import com.horil.quizhub.ListViewHandlers.CategoryThreeQuiz;
 import com.horil.quizhub.R;
@@ -25,9 +20,6 @@ import com.horil.quizhub.Result;
 import java.io.IOException;
 
 public class QuizActEnglish extends AppCompatActivity {
-
-    AdView adView;
-    InterstitialAd interstitialAd;
 
     //For Sqlite
     public static int Questionnumber = 0;
@@ -55,67 +47,6 @@ public class QuizActEnglish extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.quiz_view);
-
-        adView = (AdView) findViewById(R.id.banner_ad);
-        MobileAds.initialize(this, "" + getResources().getString(R.string.admob_app_id));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit));
-        interstitialAd.loadAd(adRequest);
-
-        interstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                interstitialAd.show();
-            }
-        });
-
-/*
-
-        // FB Ads
-        AudienceNetworkAds.initialize(this);
-        interstitialAd = new InterstitialAd(this, "593393224452198_597131817411672");
-
-        // For auto play video ads, it's recommended to load the ad
-        // at least 30 seconds before it is shown
-       // interstitialAd.loadAd();
-        // Interstitial Ads Listner
-        interstitialAd.setAdListener(new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-
-            }
-
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-
-            }
-
-            @Override
-            public void onError(Ad ad, AdError adError) {
-
-            }
-
-            @Override
-            public void onAdLoaded(Ad ad) {
-
-            }
-
-            @Override
-            public void onAdClicked(Ad ad) {
-
-            }
-
-            @Override
-            public void onLoggingImpression(Ad ad) {
-
-            }
-        });
-
-*/
 
         //SQLITE
         this.dbhelper = new DBHelperForC_Three(this);
@@ -225,16 +156,6 @@ public class QuizActEnglish extends AppCompatActivity {
                     in.putExtra(Correct_Answered, correctanswer);
                     in.putExtra(Wrong_Answered, wronganswer);
                     in.putExtra(Skipped_Questions, skippedq);
-
-                    if(interstitialAd ==null || !interstitialAd.isLoaded())
-                    {
-                        startActivity(in);
-                    }
-                    else
-                    {
-                        startActivity(in);
-                        interstitialAd.show();
-                    }
 
                 } else {
                     qcounter++;

@@ -12,11 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.horil.quizhub.DBHelpers.DBHelperForSC_One;
 import com.horil.quizhub.ListViewHandlers.SubCategoryOneQuiz;
 import com.horil.quizhub.R;
@@ -30,8 +25,6 @@ public class QuizActIndia extends AppCompatActivity {
     public static int Questionnumber = 0;
     public String[] data = new String[8];
     DBHelperForSC_One dbhelper;
-    AdView adView;
-    InterstitialAd interstitialAd;
 
     LinearLayout optionA, optionB, optionC, optionD;
     TextView questiontext, qnumber, optionatext, optionbtext, optionctext, optiondtext, selectedquiz;
@@ -45,32 +38,15 @@ public class QuizActIndia extends AppCompatActivity {
     public static int wronganswer = 0;
     public static int selectedquizn = 0;
     int click = 0;
-    public static final String Correct_Answered = "com.quizguru.correctanswered";
-    public static final String Wrong_Answered = "com.quizguru.wronganswered";
-    public static final String Skipped_Questions = "com.quizguru.skippedquestions";
+    public static final String Correct_Answered = "correctanswered";
+    public static final String Wrong_Answered = "wronganswered";
+    public static final String Skipped_Questions = "skippedquestions";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.quiz_view);
-
-        adView = (AdView) findViewById(R.id.banner_ad);
-        MobileAds.initialize(this, "" + getResources().getString(R.string.admob_app_id));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit));
-        interstitialAd.loadAd(adRequest);
-
-        interstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                interstitialAd.show();
-            }
-        });
 
 
         //SQLITE
