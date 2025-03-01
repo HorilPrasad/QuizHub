@@ -11,12 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.horil.quizhub.DBHelpers.DBHelperForSC_Two;
 import com.horil.quizhub.ListViewHandlers.SubCategoryTwoQuiz;
 import com.horil.quizhub.R;
@@ -25,9 +19,6 @@ import com.horil.quizhub.Result;
 import java.io.IOException;
 
 public class QuizActWorld extends AppCompatActivity {
-
-    AdView adView;
-    InterstitialAd interstitialAd;
     //For Sqlite
     public static int Questionnumber = 0;
     public String[] data = new String[8];
@@ -55,23 +46,6 @@ public class QuizActWorld extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.quiz_view);
 
-
-        adView = (AdView) findViewById(R.id.banner_ad);
-        MobileAds.initialize(this, "" + getResources().getString(R.string.admob_app_id));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit));
-        interstitialAd.loadAd(adRequest);
-
-        interstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                interstitialAd.show();
-            }
-        });
         //SQLITE
         this.dbhelper = new DBHelperForSC_Two(this);
         try {
